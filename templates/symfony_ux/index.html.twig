@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony UX{% endblock %}
+
+{% block body %}
+    <h2>Symfony UX</h2>
+
+    <div data-controller="hello"></div>
+
+    <hr />
+
+    {{ render_chart(chart) }}
+{% endblock %}

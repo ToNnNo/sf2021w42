@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation Symfony Page Accueil{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a
+                            href="{{ '/Users/Dawan/Desktop/formation-symfony/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code>
+            </li>
+            <li>Your template at <code><a
+                            href="{{ '/Users/Dawan/Desktop/formation-symfony/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code>
+            </li>
+        </ul>
+
+        <hr/> {# horizontal rule #}
+        <h2>Travail en local</h2>
+        <p>Adresse ip: http://127.0.0.1:8000/</p>
+        <p>Domaine: http://localhost:8000/</p>
+
+        <h2>Mon Code HTML dans twig</h2>
+
+        <p>Hello {{ name }}, tu es vraiment un formateur compétent.</p>
+
+        <p>{{ '{{ ... }}' }} permet de faire afficher le contenu d'une variable</p>
+
+        <h3>Les Variables</h3>
+        <p>
+            Une sorte de boite (espace mémoire) dans on peut stocker une valeur. Par contre cette boite ne peut contenir
+            qu'une seule valeur à la fois.<br/>
+            Quand on donne une nouvelle valeur à une variable, la précedente est perdu.
+        </p>
+        <p>{{ '{{ name }} a {{ age }} ans' }}</p>
+        <p><b>Ex:</b> {{ name }} a {{ age }} ans</p>
+
+        <h3>Twig</h3>
+        <p>Twig met à disposition 3 types de syntaxe:</p>
+        <ul>
+            <li>{{ '{{ ... }}' }} permet de faire afficher le contenu d'une variable</li>
+            <li>{{ '{# ... #}' }} permet d'écrire des commentaires</li> {# Ceci est un commentaire #}
+            <li>{{ '{% ... %}' }} permet d'utiliser des tags twig (structures)</li>
+        </ul>
+
+        <h4>Tags</h4>
+        <p>
+            Comme en HTML, les tags s'ouvrent avec {{ '{% nomdutag ... %}' }} et se ferment
+            avec {{ '{% end+nomdutag %}' }}<br/>
+            <b>ex:</b> {{ '{% block ... %}{% endblock %}' }}
+        </p>
+        <p>
+            <strong>Attention:</strong> Certains tags ne se ferment pas.</p>
+
+        <dl>
+            <dt>block</dt>
+            <dd>Permet de créer une zone modification dans le fichier</dd>
+            <dt>extends</dt>
+            <dd>Permet de faire de l'héritage de fichier</dd>
+        </dl>
+
+        <p>
+            Dans un fichier de vue (.twig), on peut déclarer des zones dynamiques à l'aide des tags <b>block</b>
+            {{ '{% block nom %}{% endblock %}' }}.<br/>
+            Les blocks sont des zones dynamiques qui pourront être modifiées dans un autre fichier twig enfant.
+            <b>Ex:</b>
+            le fichier index.html.twig qui modifie la valeur du block title.
+        </p>
+        <p>
+            Les fichiers de vues héritent d'un fichier base (ex: base.html.twig), avec le tag <b>extends</b>
+            {{ "{% extends 'base.html.twig' %}" }}.
+            Le fichier <code>base.html.twig</code>, contient le template général de la page. Les fichiers de vues
+            (index.html.twig) vont hérités de l'ensemble du contenu de la base et vont pouvoir modifier les contenus des
+            blocks.
+        </p>
+
+        <h4>Les urls avec twig</h4>
+
+        <p>
+            Lien hypertexte en HTML: <a href="http://www.dawan.fr" target="_blank">Site web de Dawan</a><br />
+            <small>l'attribut <code>target="_blank"</code> dans un lien hypertexte, permet d'ouvrir la cible
+                (page indiqué dans l'attribut href) sur un nouvel onglet du navigateur</small></p>
+
+        <p>Twig met à disposition 2 fonctions pour créer des urls</p>
+        <ul>
+            <li>path(): crée des url relative</li>
+            <li>url(): crée des url absolue</li>
+        </ul>
+        <p><b>Exemple:</b> http://www.dawan.fr -> on souhaite affiche la page présentation (about.html)</p>
+        <ul>
+            <li>adresse relative de la page présentation: <code>/about.html</code></li>
+            <li>adresse absolue de la page présentation: <code>http://www.dawan.fr/about.html</code></li>
+        </ul>
+
+        <p>
+            <a href="{{ path('urls') }}">Voir un exemple</a>
+        </p>
+
+        <h3>Controller</h3>
+        <p>
+            Le controleur se charge de demander le rendu d'un fichier de vue (.html.twig). Pour faire le rendu d'une
+            page on utilise la méthode <code>render()</code> du controleur, à laquelle on va indiquer le nom de la page
+            à afficher + un tableau de valeur que l'on pourra utiliser dans la vue.</p>
+        <p><b>ex:</b> $this->render('path/to/file.html.twig', ['maVariable' => 'maValeur', ... ]);</p>
+
+        <h3>Symfony CLI</h3>
+        <p><small>Les commandes s'executent dans un terminal</small></p>
+        <dl>
+            <dt>Créer un contrôleur Symfony</dt>
+            <dd><code>symfony console make:controller</code></dd>
+        </dl>
+    </div>
+    <div>
+        <h2>Exercice</h2>
+
+        <p>Créer un nouveau controller qui l'on nommera video, qui affichera une vidéo Youtube<br />
+            <small>Choisir une video > Partager > Intégrer > coller code (iframe) dans le HTML</small><br />
+            le titre de la page (title, h2) sera "Mes vidéos" avec en dessous la video<br />
+            ajouter un lien dans la navigation principale qui amène à la page vidéo</p>
+
+    </div>
+
+{% endblock %}

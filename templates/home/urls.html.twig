@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les urls avec twig{% endblock %}
+
+{% block body %}
+    <h2>Les urls avec twig</h2>
+    <div>
+        <a href="{{ path('home') }}">Revenir à la page d'accueil</a>
+    </div>
+
+    <p>path(): {{ path('urls') }}</p>
+    <p>url(): {{ url('urls') }}</p>
+
+    <hr />
+    {# http://www.monsite.com/boutique.html?page=5 #}
+
+    <p>Dans une url, on peut transmettre des paramètres. Ces paramètres se place derrière le caractère "?" et se présente
+        sous la forme clé/valeur. On appelle ces paramètres des paramètres de requête.</p>
+
+    <p>
+        <a href="{{ path('urls', {'name': 'Stéphane'}) }}">Ajouter un paramètre dans l'url</a>
+    </p>
+    <p>
+        Bonjour {{ name }} !
+    </p>
+{% endblock %}
